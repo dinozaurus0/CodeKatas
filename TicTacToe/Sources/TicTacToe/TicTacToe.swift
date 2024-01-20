@@ -8,30 +8,33 @@
 public struct TicTacToe {
     public typealias Board = Matrix<String?>
 
-    public enum Player {
-        case one
-        case two
+    public enum Player: String {
+        case one = "X"
+        case two = "O"
+
+        public var symbol: String { self.rawValue }
     }
 
     public init() {}
 
-    public func makeMove(player: Player, position: Matrix.Position) -> Board {
+    public func move(player: Player, position: Matrix.Position) -> Board {
         var board = Board(dimension: Board.Dimension(rows: 3, columns: 3))
-        if position == 3 {
-            board.update(at: 3, with: "X")
-        }
-
-        if position == 4 {
-            board.update(at: 4, with: "X")
-        }
-
-        if position == 6 && player == .two {
-            board.update(at: 6, with: "0")
-        }
-
-        if position == 6 && player == .one {
-            board.update(at: 6, with: "X")
-        }
+        board.update(at: position, with: player.symbol)
+//        if position == 3 {
+//            board.update(at: 3, with: "X")
+//        }
+//
+//        if position == 4 {
+//            board.update(at: 4, with: "X")
+//        }
+//
+//        if position == 6 && player == .two {
+//            board.update(at: 6, with: "0")
+//        }
+//
+//        if position == 6 && player == .one {
+//            board.update(at: 6, with: "X")
+//        }
 
         return board
     }
