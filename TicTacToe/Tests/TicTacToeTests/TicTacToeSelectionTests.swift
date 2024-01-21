@@ -37,13 +37,6 @@ final class TicTacToeSelectionTests: XCTestCase {
         TicTacToe()
     }
 
-    private func assertEqualBoards(
-        firstBoard: TicTacToe.Board,
-        secondBoard: TicTacToe.Board
-    ) {
-        XCTAssertTrue(Matrix.isEqual(lhs: firstBoard, rhs: secondBoard))
-    }
-
     private func makeBoard(
         for value: String?,
         row: Int,
