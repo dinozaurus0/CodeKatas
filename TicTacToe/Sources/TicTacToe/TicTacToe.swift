@@ -5,7 +5,7 @@
 //  Created by Vlad Grigore Sima on 05.01.2024.
 //
 
-public struct TicTacToe {
+public class TicTacToe {
     public typealias Board = Matrix<String?>
 
     public enum Player: String {
@@ -15,14 +15,15 @@ public struct TicTacToe {
         public var symbol: String { self.rawValue }
     }
 
-    public init() {}
+    public private(set) var board: Board
+
+    public init() {
+        let boardSize: TicTacToe.Board.Dimension = (rows: 3, columns: 3)
+        self.board = Board(dimension: boardSize)
+    }
 
     public func move(player: Player, at position: Matrix.Position) -> Board {
-        let boardSize: TicTacToe.Board.Dimension = (rows: 3, columns: 3)
-        var board = Board(dimension: boardSize)
-
         board.update(at: position, with: player.symbol)
-
         return board
     }
 }

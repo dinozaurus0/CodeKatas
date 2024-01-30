@@ -21,4 +21,53 @@ import TicTacToe
 
  */
 
-final class TicTacToeTests: XCTestCase {}
+let anyPlayer = TicTacToe.Player.random
+
+final class TicTacToeTests: XCTestCase {
+    func test_selectMultipleCells_boardUpdatesAreCumulative_forAnyPlayer() {
+        let player = anyPlayer
+        let boardPositions = (
+            matrixIndices: [(0, 1), (0, 2), (1, 1)],
+            indices: [2, 3, 5]
+        )
+        let newPosition = (
+            matrixPosition: (2, 0),
+            index: 7
+        )
+        let testCase = TestCase(
+            sut: makeSUT(for: boardPositions.indices, player: player),
+            expectedResult: makeBoard(for: boardPositions.matrixIndices + [newPosition.matrixPosition], symbol: player.symbol)
+        )
+
+        let actualBoard = testCase.sut.move(player: player, at: newPosition.index)
+
+        assertEqualBoards(firstBoard: actualBoard, secondBoard: testCase.expectedResult!)
+    }
+
+    // MARK: - Helpers
+
+    private func makeSUT(
+        for indices: [Int],
+        player: TicTacToe.Player
+    ) -> TicTacToe {
+
+        let sut = TicTacToe()
+        indices.forEach { index in
+            _ = sut.move(player: player, at: index)
+        }
+
+        return sut
+    }
+
+    private func makeBoard(
+        for indices: [(Int, Int)],
+        symbol: String
+    ) -> TicTacToe.Board? {
+        var values: [[String?]] = [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]]
+        indices.forEach { (row, column) in
+            values[row][column] = symbol
+        }
+
+        return TicTacToe.Board(values: values)
+    }
+}
