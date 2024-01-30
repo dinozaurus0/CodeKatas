@@ -8,8 +8,6 @@
 import XCTest
 import TicTacToe
 
-private let anyPlayer = TicTacToe.Player.random
-
 final class TicTacToeSelectionTests: XCTestCase {
     func test_selectCells_boardUpdatedAtSelectedPosition_forAnyPlayer() {
         let boardPositions = [

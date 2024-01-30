@@ -20,11 +20,15 @@ extension XCTestCase {
             XCTFail("Boards dimension is not equal", file: file, line: line)
         }
 
+        var position: Int = 0
+
         for (firstBoardValue, secondBoardValues) in zip(firstBoard.values, secondBoard.values) {
             for (lhsValue, rhsValue) in zip(firstBoardValue, secondBoardValues) {
+                position += 1
                 let comparisonExpression = lhsValue == rhsValue || lhsValue.flatMap( { $0 }) == rhsValue || lhsValue == rhsValue.flatMap( {$0 } )
                 if !comparisonExpression {
-                    XCTFail("Failed test for method \(function). \n Values are not equal \(String(describing: lhsValue)) & \(String(describing: rhsValue))", file: file, line: line)
+                    let errorMessage = "Failed test for method \(function). \n Values are not equal \(String(describing: lhsValue)) & \(String(describing: rhsValue)) at position: \(position)"
+                    XCTFail(errorMessage, file: file, line: line)
                 }
             }
         }
