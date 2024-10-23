@@ -44,4 +44,20 @@ final class CityFinderTests: XCTestCase {
 
         XCTAssertEqual(result, ["Rotterdam", "Rome"])
     }
+
+    func test_search_withCaseInsensitivePrefix_shouldReturnCitiesStartingWithPrefix() {
+        let sut = CityFinder()
+
+        let result = sut.find(using: "ro")
+
+        XCTAssertEqual(result, ["Rotterdam", "Rome"])
+    }
+
+    func test_search_withSearchTextApe_shouldReturnCitiesContainingSearchText() {
+        let sut = CityFinder()
+
+        let result = sut.find(using: "ape")
+
+        XCTAssertEqual(result, ["Budapest"])
+    }
 }
