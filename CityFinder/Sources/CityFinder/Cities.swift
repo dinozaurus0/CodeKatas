@@ -1,4 +1,4 @@
-internal let cities = [
+public let cities = [
     "Paris",
     "Budapest",
     "Skopje",

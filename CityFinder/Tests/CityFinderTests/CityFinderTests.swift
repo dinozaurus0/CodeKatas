@@ -60,4 +60,20 @@ final class CityFinderTests: XCTestCase {
 
         XCTAssertEqual(result, ["Budapest"])
     }
+
+    func test_search_withSearchTextDam_shouldReturnCitiesContainingSearchText() {
+        let sut = CityFinder()
+
+        let result = sut.find(using: "Dam")
+
+        XCTAssertEqual(result, ["Rotterdam", "Amsterdam"])
+    }
+
+    func test_search_withAsterix_shouldReturnAllCities() {
+        let sut = CityFinder()
+
+        let result = sut.find(using: "*")
+
+        XCTAssertEqual(result, cities)
+    }
 }
