@@ -11,7 +11,7 @@ import TicTacToe
  3. Each player take a turn, then is the turn of the other player.
  4. They can't override each other choices.
  5. ++ Players can specify a cell from 1-9. Verify that all transitions are correct. Is this independent of player?
- 6. Players' movements are cumulative <--
+ 6. ++ Players' movements are cumulative
  7. ++ Verify that each players choice is correct. (Covered by point 5 where we use any player)
 
  Winning rules:
